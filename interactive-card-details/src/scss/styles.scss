@@ -274,7 +274,7 @@ button {
 
   .info-container {
     height: 100vh;
-    margin-top: 12rem;
+    margin-top: calc((100vh - 25rem) / 2);
   }
 
   .form-section {
