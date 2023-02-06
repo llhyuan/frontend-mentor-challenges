@@ -8,9 +8,7 @@ $color-bodyText: hsl(278, 68%, 11%);
 $color-inputPlaceholder: hsl(281, 9%, 41%);
 $color-error: hsl(0, 100%, 66%);
 $color-border: hsl(270, 3%, 87%);
-$color-activeBoxBorder: linear-gradient(
-  hsl(249, 99%, 64%) to hsl(278, 94%, 30%)
-);
+$color-activeBoxBackground: hsl(249, 99%, 64%);
 $border-radius: 5px;
 $width-card-container: 375px;
 $height-card-container: 250px;
@@ -63,6 +61,15 @@ button {
   border-radius: $border-radius;
   background-color: $color-bodyText;
   color: $color-background-white;
+
+  &:hover {
+    cursor: pointer;
+    background-color: $color-activeBoxBackground;
+  }
+
+  &:active {
+    transform: scale(0.99);
+  }
 }
 
 .header {
@@ -198,12 +205,6 @@ button {
   color: $color-error;
 
   position: absolute;
-  bottom: -1rem;
-  left: 0;
-
-  &:last-of-type {
-    left: 11.4rem;
-  }
 }
 
 .hide-error-message {
