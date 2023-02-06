@@ -12,7 +12,8 @@ $color-activeBoxBorder: linear-gradient(
   hsl(249, 99%, 64%) to hsl(278, 94%, 30%)
 );
 $border-radius: 5px;
-
+$width-card-container: 375px;
+$height-card-container: 250px;
 * {
   margin: 0;
   padding: 0;
@@ -37,13 +38,21 @@ label {
 input {
   border: 1px solid $color-border;
   border-radius: $border-radius;
+  outline: none;
   padding: 0.5rem;
 
   width: 100%;
-  margin-bottom: 1rem;
   font-family: "Space Grotesk", sans-serif;
   font-size: 1.2rem;
   color: $color-inputPlaceholder;
+
+  &:focus {
+    border-color: purple;
+  }
+
+  &:invalid {
+    border-color: red;
+  }
 }
 
 button {
@@ -63,8 +72,8 @@ button {
 }
 
 .card-container {
-  height: 250px;
-  width: 375px;
+  height: $height-card-container;
+  width: $width-card-container;
   padding: 1rem;
   margin: 0 auto;
   color: $color-cardText;
@@ -101,32 +110,30 @@ button {
       position: absolute;
       top: 5rem;
       width: 100%;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      & > p {
+        font-size: 1.3rem;
+        letter-spacing: 0.15rem;
+      }
+
+      & > div {
+        width: 100%;
+        padding: 1rem;
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.8rem;
+      }
     }
   }
 
   .card-back,
   .card-front {
-    width: calc(375px - 5rem);
-  }
-}
-
-.card-details-on-card {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  & > p {
-    font-size: 1.3rem;
-    letter-spacing: 0.15rem;
-  }
-
-  & > div {
-    width: 100%;
-    padding: 1rem;
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.8rem;
+    width: calc($width-card-container - 5rem);
   }
 }
 
@@ -137,29 +144,10 @@ button {
   margin: 4rem auto;
 }
 
-// .card-details {
-//   font-size: 0.8rem;
-//   letter-spacing: 0.1rem;
-
-//   label {
-//     display: block;
-//     text-transform: uppercase;
-//     margin-bottom: 0.5rem;
-//     font-size: 0.8rem;
-//   letter-spacing: 0.1rem;
-//   }
-
-//   input {
-//     border: 1px solid $color-border;
-//     border-radius: $border-radius;
-//     padding: 0.5rem;
-
-//     width: 100%;
-//     margin-bottom: 1rem;
-//     font-size: 0.8rem;
-//   letter-spacing: 0.1rem;
-//   }
-// }
+.form-section {
+  position: relative;
+  margin-bottom: 1rem;
+}
 
 .other-info {
   display: flex;
@@ -202,5 +190,94 @@ button {
 
   p {
     color: $color-inputPlaceholder;
+  }
+}
+
+.error-message {
+  font-size: 0.6rem;
+  color: $color-error;
+
+  position: absolute;
+  bottom: -1rem;
+  left: 0;
+
+  &:last-of-type {
+    left: 11.4rem;
+  }
+}
+
+.hide-error-message {
+  display: none;
+}
+
+@media only screen and (min-width: 1124px) {
+  $width-card-container: 450px;
+  $height-card-container: calc(450px / (375px / 250px));
+  label {
+    margin-bottom: 1rem;
+  }
+  .desktop-layout {
+    display: flex;
+
+    .header {
+      height: 100vh;
+      flex: 1;
+    }
+    .desktop-layout-cardinfo {
+      flex: 2;
+    }
+  }
+
+  .card-container {
+    top: 50%;
+    right: -5rem;
+
+    .card-back-container {
+      right: -7rem;
+
+      p {
+        top: 5.5rem;
+        right: 2.5rem;
+      }
+    }
+
+    .card-front-container {
+      left: 2rem;
+      top: -80%;
+
+      .card-logo {
+        top: 1.5rem;
+        left: 1.5rem;
+
+        width: 5rem;
+      }
+
+      .card-details-on-card {
+        top: 7rem;
+        width: 100%;
+        & > p {
+          font-size: 1.5rem;
+          letter-spacing: 0.2rem;
+        }
+
+        & > div {
+          font-size: 0.9rem;
+        }
+      }
+    }
+
+    .card-back,
+    .card-front {
+      width: calc($width-card-container - 5rem);
+    }
+  }
+
+  .info-container {
+    height: 100vh;
+    margin-top: 12rem;
+  }
+
+  .form-section {
+    margin-bottom: 2rem;
   }
 }
