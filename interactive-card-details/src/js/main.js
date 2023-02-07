@@ -1,119 +1,88 @@
 // import "../scss/styles.scss";
 
-const nameInput = document.getElementById("cardholder-name");
-const nameOnCard = document.getElementById("name-on-card");
+const nameInput = document.getElementById('cardholder-name');
+const nameOnCard = document.getElementById('name-on-card');
 
-const cardNumberInput = document.getElementById("card-number");
-const cardNumberOnCard = document.getElementById("card-number-on-card");
+const cardNumberInput = document.getElementById('card-number');
+const cardNumberOnCard = document.getElementById('card-number-on-card');
 
-const expireMonthInput = document.getElementById("expire-month");
-const expireMonthOnCard = document.getElementById("expire-month-on-card");
+const expireMonthInput = document.getElementById('expire-month');
+const expireMonthOnCard = document.getElementById('expire-month-on-card');
 
-const expireYearInput = document.getElementById("expire-year");
-const expireYearOnCard = document.getElementById("expire-year-on-card");
+const expireYearInput = document.getElementById('expire-year');
+const expireYearOnCard = document.getElementById('expire-year-on-card');
 
-const cvcInput = document.getElementById("cvc");
-const cvcOnCard = document.getElementById("cvc-on-card");
+const cvcInput = document.getElementById('cvc');
+const cvcOnCard = document.getElementById('cvc-on-card');
 
-const messageContainers = document.querySelectorAll(".error-message");
+const messageContainers = document.querySelectorAll('.error-message');
 
-const submitButton = document.getElementById("button");
+const submitButton = document.getElementById('confirm-button');
+const continueButton = document.getElementById('continue-button');
 
-const inputsAndCheckers = [
-  [nameInput, nameChecker, nameOnCard],
-  [cardNumberInput, cardNumberChecker, cardNumberOnCard],
-  [expireMonthInput, expireMonthChecker, expireMonthOnCard],
-  [expireYearInput, expireYearChecker, expireYearOnCard],
-  [cvcInput, cvcChecker, cvcOnCard],
+const infoContainer = document.querySelector('.info-container');
+
+const inputsAndOutputs = [
+  [nameInput, nameOnCard],
+  [cardNumberInput, cardNumberOnCard],
+  [expireMonthInput, expireMonthOnCard],
+  [expireYearInput, expireYearOnCard],
+  [cvcInput, cvcOnCard],
 ];
 
 /*-----------------------------------------------*/
 
-function nameChecker(nameInput) {
-  return /^[a-zA-Z][a-zA-Z\s]{0,20}[a-zA-Z]$/.test(nameInput.value);
-}
-
-function cardNumberChecker(cardNumberInput) {
-  return /^([0-9]{4} ){3}[0-9]{4}$/.test(cardNumberInput.value);
-}
-
-function expireMonthChecker(expireMonthInput) {
-  return /^0[1-9]$|^1[12]$/.test(expireMonthInput.value);
-}
-
-function expireYearChecker(expireYearInput) {
-  return /^[0-9][0-9]$/.test(expireYearInput.value);
-}
-
-function cvcChecker(cvcInput) {
-  return /^[0-9]{2}[0-9]$/.test(cvcInput.value);
-}
-
-function statusChecker(inputElement, checker) {
-  let status = false;
-  if (inputElement.value === "") {
-    alertMessage(inputElement, "empty");
-  } else {
-    if (checker(inputElement)) {
-      status = true;
-    } else {
-      alertMessage(inputElement, "invalid");
-    }
+function statusChecker(inputElement) {
+  if (!inputElement.validity.valid) {
+    alertMessage(inputElement);
   }
-  if (!status) {
-    inputElement.classList.add("invalid-input");
-  }
-  return status;
+  return inputElement.validity.valid;
 }
 
-function alertMessage(inputElement, status) {
-  console.log(inputElement, status);
+function alertMessage(inputElement) {
   const messageContainer = inputElement.parentElement.nextElementSibling;
 
-  switch (status) {
-    case "empty":
-      if (messageContainer.textContent !== "Cannot be blank. ") {
-        messageContainer.textContent += "Cannot be blank. ";
-      }
-      break;
-    case "invalid":
-      if (messageContainer.textContent !== msgTemplate) {
-        messageContainer.textContent += inputElement.validationMessage;
-      }
-  }
+  messageContainer.textContent = inputElement.validationMessage;
 }
 
 function resetErrorMessage() {
-  console.log("running");
   messageContainers.forEach(
-    (messageContainer) => (messageContainer.textContent = "")
+    (messageContainer) => (messageContainer.textContent = '')
   );
 
-  inputsAndCheckers.forEach(([input, checker, _]) =>
-    input.classList.remove("invalid-input")
+  inputsAndOutputs.forEach(([input, checker, _]) =>
+    input.classList.remove('invalid-input')
   );
 }
 
 /*-----------------------------------------------*/
 
-submitButton.addEventListener("click", function (e) {
+submitButton.addEventListener('click', function (e) {
   e.preventDefault();
 
   resetErrorMessage();
 
-  let detailsValidity = inputsAndCheckers.reduce(function (
+  let detailsValidity = inputsAndOutputs.reduce(function (
     formStatus,
-    [input, checker, _]
+    [input, _]
   ) {
-    const inputStatus = statusChecker(input, checker);
+    const inputStatus = statusChecker(input);
     formStatus &&= inputStatus;
     return formStatus;
   },
   true);
 
   if (detailsValidity) {
-    inputsAndCheckers.forEach(function ([input, _, onCardInfo]) {
+    inputsAndOutputs.forEach(function ([input, onCardInfo]) {
       onCardInfo.textContent = input.value;
     });
+
+    Object.values(infoContainer.children).map(function (child) {
+      child.classList.toggle('hide-content');
+    });
   }
+});
+
+continueButton.addEventListener('click', function () {
+  window.location.reload(true);
 });
