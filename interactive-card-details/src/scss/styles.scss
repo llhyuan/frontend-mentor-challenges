@@ -9,6 +9,7 @@ $color-inputPlaceholder: hsl(281, 9%, 41%);
 $color-error: hsl(0, 100%, 66%);
 $color-border: hsl(270, 3%, 87%);
 $color-activeBoxBackground: hsl(249, 99%, 64%);
+$color-disabledBoxBackground: hsl(249, 90%, 81%);
 $border-radius: 5px;
 $width-card-container: 375px;
 $height-card-container: 250px;
@@ -69,6 +70,12 @@ button {
 
   &:active {
     transform: scale(0.99);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    background-color: $color-disabledBoxBackground;
+    transform: none;
   }
 }
 

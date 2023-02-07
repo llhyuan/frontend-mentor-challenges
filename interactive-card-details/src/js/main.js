@@ -45,7 +45,7 @@ function alertMessage(inputElement) {
   messageContainer.textContent = inputElement.validationMessage;
 }
 
-function resetErrorMessage() {
+function resetErrorMessages() {
   messageContainers.forEach(
     (messageContainer) => (messageContainer.textContent = '')
   );
@@ -55,32 +55,42 @@ function resetErrorMessage() {
   );
 }
 
+function resetErrorMessage(errorMessage) {
+  errorMessage.textContent = '';
+}
+
+function formValidityChecker() {
+  return inputsAndOutputs.reduce(function (formStatus, [input, _]) {
+    const inputStatus = statusChecker(input);
+    formStatus &&= inputStatus;
+    return formStatus;
+  }, true);
+}
+
 /*-----------------------------------------------*/
+
+inputsAndOutputs.forEach(function ([input]) {
+  input.addEventListener('focusout', function (e) {
+    const errorMessage = e.target.parentElement.nextElementSibling;
+    resetErrorMessage(errorMessage);
+    statusChecker(e.target);
+
+    if (formValidityChecker()) {
+      submitButton.disabled = false;
+    }
+  });
+});
 
 submitButton.addEventListener('click', function (e) {
   e.preventDefault();
 
-  resetErrorMessage();
+  inputsAndOutputs.forEach(function ([input, onCardInfo]) {
+    onCardInfo.textContent = input.value;
+  });
 
-  let detailsValidity = inputsAndOutputs.reduce(function (
-    formStatus,
-    [input, _]
-  ) {
-    const inputStatus = statusChecker(input);
-    formStatus &&= inputStatus;
-    return formStatus;
-  },
-  true);
-
-  if (detailsValidity) {
-    inputsAndOutputs.forEach(function ([input, onCardInfo]) {
-      onCardInfo.textContent = input.value;
-    });
-
-    Object.values(infoContainer.children).map(function (child) {
-      child.classList.toggle('hide-content');
-    });
-  }
+  Object.values(infoContainer.children).map(function (child) {
+    child.classList.toggle('hide-content');
+  });
 });
 
 continueButton.addEventListener('click', function () {
