@@ -63,6 +63,9 @@ button {
   background-color: $color-bodyText;
   color: $color-background-white;
 
+  transition-property: background-color;
+  transition-duration: 0.3s;
+
   &:hover {
     cursor: pointer;
     background-color: $color-activeBoxBackground;
@@ -76,6 +79,9 @@ button {
     cursor: not-allowed;
     background-color: $color-disabledBoxBackground;
     transform: none;
+  }
+  &:enabled {
+    background-color: $color-activeBoxBackground;
   }
 }
 

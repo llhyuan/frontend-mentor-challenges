@@ -81,6 +81,8 @@ inputsAndOutputs.forEach(function ([input]) {
 
     if (formValidityChecker()) {
       submitButton.disabled = false;
+    } else {
+      submitButton.disabled = true;
     }
   });
 });
