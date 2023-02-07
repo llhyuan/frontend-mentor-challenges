@@ -15,8 +15,6 @@ const expireYearOnCard = document.getElementById('expire-year-on-card');
 const cvcInput = document.getElementById('cvc');
 const cvcOnCard = document.getElementById('cvc-on-card');
 
-const messageContainers = document.querySelectorAll('.error-message');
-
 const submitButton = document.getElementById('confirm-button');
 const continueButton = document.getElementById('continue-button');
 
@@ -43,16 +41,6 @@ function alertMessage(inputElement) {
   const messageContainer = inputElement.parentElement.nextElementSibling;
 
   messageContainer.textContent = inputElement.validationMessage;
-}
-
-function resetErrorMessages() {
-  messageContainers.forEach(
-    (messageContainer) => (messageContainer.textContent = '')
-  );
-
-  inputsAndOutputs.forEach(([input, checker, _]) =>
-    input.classList.remove('invalid-input')
-  );
 }
 
 function resetErrorMessage(errorMessage) {
