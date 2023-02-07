@@ -4,7 +4,7 @@ const nameInput = document.getElementById("cardholder-name");
 const nameOnCard = document.getElementById("name-on-card");
 
 const cardNumberInput = document.getElementById("card-number");
-const cardNumberOnCard = document.getElementById("name-on-card");
+const cardNumberOnCard = document.getElementById("card-number-on-card");
 
 const expireMonthInput = document.getElementById("expire-month");
 const expireMonthOnCard = document.getElementById("expire-month-on-card");
@@ -15,7 +15,17 @@ const expireYearOnCard = document.getElementById("expire-year-on-card");
 const cvcInput = document.getElementById("cvc");
 const cvcOnCard = document.getElementById("cvc-on-card");
 
+const messageContainers = document.querySelectorAll(".error-message");
+
 const submitButton = document.getElementById("button");
+
+const inputsAndCheckers = [
+  [nameInput, nameChecker, nameOnCard],
+  [cardNumberInput, cardNumberChecker, cardNumberOnCard],
+  [expireMonthInput, expireMonthChecker, expireMonthOnCard],
+  [expireYearInput, expireYearChecker, expireYearOnCard],
+  [cvcInput, cvcChecker, cvcOnCard],
+];
 
 /*-----------------------------------------------*/
 
@@ -24,7 +34,7 @@ function nameChecker(nameInput) {
 }
 
 function cardNumberChecker(cardNumberInput) {
-  return /^[0-9]{15}[0-9]$/.test(cardNumberInput.value);
+  return /^([0-9]{4} ){3}[0-9]{4}$/.test(cardNumberInput.value);
 }
 
 function expireMonthChecker(expireMonthInput) {
@@ -46,28 +56,64 @@ function statusChecker(inputElement, checker) {
   } else {
     if (checker(inputElement)) {
       status = true;
-      alertMessage(inputElement, "valid");
     } else {
-      alertMessage(inputElement, "valid");
+      alertMessage(inputElement, "invalid");
     }
+  }
+  if (!status) {
+    inputElement.classList.add("invalid-input");
   }
   return status;
 }
 
-function alertMessage(inputElement, status) {}
+function alertMessage(inputElement, status) {
+  console.log(inputElement, status);
+  const messageContainer = inputElement.parentElement.nextElementSibling;
 
-function resetErrorMessage() {}
+  switch (status) {
+    case "empty":
+      if (messageContainer.textContent !== "Cannot be blank. ") {
+        messageContainer.textContent += "Cannot be blank. ";
+      }
+      break;
+    case "invalid":
+      if (messageContainer.textContent !== msgTemplate) {
+        messageContainer.textContent += inputElement.validationMessage;
+      }
+  }
+}
+
+function resetErrorMessage() {
+  console.log("running");
+  messageContainers.forEach(
+    (messageContainer) => (messageContainer.textContent = "")
+  );
+
+  inputsAndCheckers.forEach(([input, checker, _]) =>
+    input.classList.remove("invalid-input")
+  );
+}
 
 /*-----------------------------------------------*/
-const inputsAndCheckers = [
-  [nameInput, nameChecker],
-  [cardNumberInput, cardNumberChecker],
-  [expireMonthInput, expireMonthChecker],
-  [expireYearInput, expireYearChecker],
-  [cvcInput, cvcChecker],
-];
+
 submitButton.addEventListener("click", function (e) {
   e.preventDefault();
 
-  let detailsValidility;
+  resetErrorMessage();
+
+  let detailsValidity = inputsAndCheckers.reduce(function (
+    formStatus,
+    [input, checker, _]
+  ) {
+    const inputStatus = statusChecker(input, checker);
+    formStatus &&= inputStatus;
+    return formStatus;
+  },
+  true);
+
+  if (detailsValidity) {
+    inputsAndCheckers.forEach(function ([input, _, onCardInfo]) {
+      onCardInfo.textContent = input.value;
+    });
+  }
 });

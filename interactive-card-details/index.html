@@ -78,29 +78,33 @@
           <form action="#" class="card-details">
             <div class="form-section">
               <label for="cardholder-name">cardholder name</label>
-              <input
-                type="text"
-                id="cardholder-name"
-                name="cardholder-name"
-                placeholder="e.g. Jane Appleseed"
-              />
+              <div class="wrapper">
+                <input
+                  type="text"
+                  id="cardholder-name"
+                  name="cardholder-name"
+                  placeholder="e.g. Jane Appleseed"
+                />
+              </div>
               <p class="error-message"></p>
             </div>
             <div class="form-section">
               <label for="card-number">card number</label>
-              <input
-                type="text"
-                id="card-number"
-                name="card-number"
-                placeholder="e.g. 1234 5678 9123 0000"
-              />
+              <div class="wrapper">
+                <input
+                  type="text"
+                  id="card-number"
+                  name="card-number"
+                  placeholder="1234 5678 9123 0000 (use space)"
+                />
+              </div>
               <p class="error-message"></p>
             </div>
             <div class="form-section">
               <div class="other-info">
                 <div class="expire-date">
                   <label>Exp. Date (MM/YY)</label>
-                  <div>
+                  <div class="wrapper">
                     <input
                       type="number"
                       id="expire-month"
@@ -120,12 +124,14 @@
 
                 <div class="cvc">
                   <label>CVC</label>
-                  <input
-                    type="number"
-                    id="cvc"
-                    name="cvc"
-                    placeholder="e.g. 123"
-                  />
+                  <div class="wrapper">
+                    <input
+                      type="number"
+                      id="cvc"
+                      name="cvc"
+                      placeholder="e.g. 123"
+                    />
+                  </div>
                   <p class="error-message"></p>
                 </div>
               </div>

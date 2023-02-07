@@ -207,8 +207,8 @@ button {
   position: absolute;
 }
 
-.hide-error-message {
-  display: none;
+.invalid-input {
+  border-color: $color-error;
 }
 
 @media only screen and (min-width: 1124px) {
