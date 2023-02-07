@@ -28,7 +28,23 @@ const inputsAndOutputs = [
   [cvcInput, cvcOnCard],
 ];
 
-/*-----------------------------------------------*/
+/*----------------------------------------------------*/
+
+const shakeAnimation = [
+  { transform: 'translateX(0)' },
+  { transform: 'translateX(-5px)' },
+  { transform: 'translateX(0)' },
+  { transform: 'translateX(5px)' },
+  { transform: 'translateX(0)' },
+];
+
+const animationSetting = {
+  duration: 300,
+  iteration: 2,
+  easing: 'linear',
+};
+
+/*-----------------------------------------------------*/
 
 function statusChecker(inputElement) {
   if (!inputElement.validity.valid) {
@@ -79,6 +95,9 @@ submitButton.addEventListener('click', function (e) {
   Object.values(infoContainer.children).map(function (child) {
     child.classList.toggle('hide-content');
   });
+
+  const card = document.querySelector('.card-container');
+  card.animate(shakeAnimation, animationSetting);
 });
 
 continueButton.addEventListener('click', function () {
