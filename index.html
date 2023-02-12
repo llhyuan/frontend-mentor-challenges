@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./resources/images/favicon-32x32.png"
+    />
+
+    <title>Frontend Mentor | Interactive card details form</title>
+    <link rel="stylesheet" href="src/scss/styles.css" />
+  </head>
+  <body>
+    <div class="desktop-layout">
+      <header class="header">
+        <div class="card-container">
+          <div class="card-back-container">
+            <img
+              class="card-back"
+              src="./resources/images/bg-card-back.png"
+              alt="Back of a bank card"
+            />
+            <p id="cvc-on-card">000</p>
+          </div>
+          <div class="card-front-container">
+            <img
+              class="card-front"
+              src="./resources/images/bg-card-front.png"
+              alt="Back of a bank card"
+            />
+            <svg
+              class="card-logo"
+              width="208"
+              height="116"
+              viewBox="0 0 208 116"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g clip-path="url(#clip0_336_2)">
+                <path
+                  d="M58.136 116C90.2436 116 116.272 90.0325 116.272 58C116.272 25.9675 90.2436 0 58.136 0C26.0284 0 0 25.9675 0 58C0 90.0325 26.0284 116 58.136 116Z"
+                  fill="white"
+                />
+                <path
+                  d="M206.762 58C206.762 71.7349 195.602 82.866 181.839 82.866C168.074 82.866 156.916 71.7349 156.916 58C156.916 44.2651 168.074 33.134 181.839 33.134C195.602 33.134 206.762 44.2651 206.762 58Z"
+                  stroke="white"
+                />
+              </g>
+              <defs>
+                <clipPath id="clip0_336_2">
+                  <rect width="208" height="116" fill="white" />
+                </clipPath>
+              </defs>
+            </svg>
+            <div class="card-details-on-card">
+              <p id="card-number-on-card">0000 0000 0000 0000</p>
+              <div>
+                <p id="name-on-card">Jane Appleseed</p>
+                <p>
+                  <span id="expire-month-on-card">00</span>/<span
+                    id="expire-year-on-card"
+                    >00</span
+                  >
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+      <div class="desktop-layout-cardinfo">
+        <div class="info-container">
+          <form action="#" class="card-details">
+            <div class="form-section">
+              <label for="cardholder-name">cardholder name</label>
+              <div class="wrapper">
+                <input
+                  type="text"
+                  id="cardholder-name"
+                  name="cardholder-name"
+                  placeholder="e.g. Jane Appleseed"
+                  pattern="^[a-zA-Z][a-zA-Z\s]{0,20}[a-zA-Z]$"
+                  required
+                />
+              </div>
+              <p class="error-message"></p>
+            </div>
+            <div class="form-section">
+              <label for="card-number">card number</label>
+              <div class="wrapper">
+                <input
+                  type="text"
+                  id="card-number"
+                  name="card-number"
+                  placeholder="1234 5678 9123 0000 (use space)"
+                  pattern="^([0-9]{4} ){3}[0-9]{4}$"
+                  required
+                />
+              </div>
+              <p class="error-message"></p>
+            </div>
+            <div class="form-section">
+              <div class="other-info">
+                <div class="expire-date">
+                  <label>Exp. Date (MM/YY)</label>
+                  <div class="wrapper">
+                    <input
+                      type="text"
+                      id="expire-month"
+                      name="expire-month"
+                      placeholder="MM"
+                      pattern="^0[1-9]$|^1[0-2]$"
+                      required
+                    />
+
+                    <input
+                      type="text"
+                      id="expire-year"
+                      name="expire-year"
+                      placeholder="YY"
+                      pattern="\d{2,2}"
+                      required
+                    />
+                  </div>
+                  <p class="error-message"></p>
+                </div>
+
+                <div class="cvc">
+                  <label>CVC</label>
+                  <div class="wrapper">
+                    <input
+                      type="text"
+                      id="cvc"
+                      name="cvc"
+                      placeholder="e.g. 123"
+                      pattern="\d{3,3}"
+                      required
+                    />
+                  </div>
+                  <p class="error-message"></p>
+                </div>
+              </div>
+            </div>
+            <button id="confirm-button" type="submit" disabled>Confirm</button>
+          </form>
+          <div class="confirm-message hide-content">
+            <img
+              src="./resources/images/icon-complete.svg"
+              alt="compelte icon"
+            />
+            <h2>Hurray!</h2>
+            <p>Your new card is ready!</p>
+            <button id="continue-button" type="button">Try Again</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="./src/js/main.js"></script>
+  </body>
+</html>
