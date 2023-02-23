@@ -1,10 +1,9 @@
 import headlinePhoto from '../assets/images/image-web-3-desktop.jpg'
-import '../scss/Headline.module.scss'
+import '../scss/_Headline.scss'
 
 function Headline() {
   return (
-    <div>
-      <div id='headline'>
+      <div className='headline'>
         <img src={headlinePhoto} alt='headline story photo' />
         <article>
           <h1>The Bright Futrue of Web 3.0</h1>
@@ -16,7 +15,6 @@ function Headline() {
           </section>
         </article>
       </div>
-    </div>
   )
 }
 

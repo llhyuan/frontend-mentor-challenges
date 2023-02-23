@@ -1,10 +1,9 @@
 import logo from '../assets/images/logo.svg'
-import '../scss/Nav.module.scss'
+import '../scss/_Nav.scss'
 
-function Header() {
+function Nav() {
   return (
-    <div>
-      <div id='header'>
+      <div className='nav'>
         <img src={logo} alt='logo' />
         <ul id='nav'>
           <li><a href="#">Home</a></li>
@@ -14,7 +13,6 @@ function Header() {
           <li><a href="#">Categories</a></li>
         </ul>
       </div>
-    </div>
   )
 }
 

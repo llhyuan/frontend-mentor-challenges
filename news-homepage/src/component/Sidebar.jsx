@@ -1,12 +1,11 @@
-import '../scss/Sidebar.scss'
+import '../scss/_Sidebar.scss'
 
 
 function Sidebar() {
   return (
-    <>
       <div className="sidebar">
         <h2>New</h2>
-        <div>
+        <div className='article-container'>
           <article>
             <h3>Hydrogen VS Electric Cars</h3>
             <p>Will hydrogen-fueled cars ever catch up to EVs?</p>
@@ -24,7 +23,6 @@ function Sidebar() {
           </article>
         </div>
       </div>
-    </>
   )
 }
 
