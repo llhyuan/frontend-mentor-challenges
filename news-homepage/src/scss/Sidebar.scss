@@ -1,0 +1,6 @@
+@use './variables';
+
+.sidebar {
+  background-color: variables.$color-h1;
+  color: variables.$color-Buttontext;
+}
