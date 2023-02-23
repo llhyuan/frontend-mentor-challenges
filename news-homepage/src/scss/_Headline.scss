@@ -1,0 +1,43 @@
+@use './variables' as v;
+.headline {
+  display: flex;
+  flex-direction: column;
+  width: 65.5%;
+  margin-bottom: v.$margin-bottom;
+  img {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+  article {
+    display: flex;
+
+    h1 {
+      flex: 1;
+      font-size: 3rem;
+      line-height: 3rem;
+      color: v.$color-h1;
+    }
+    section {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      p {
+        margin-bottom: 1rem;
+      }
+      a {
+        font-size: 0.8rem;
+        color: v.$color-Background;
+        background-color: v.$color-Button;
+        text-decoration: none;
+        text-transform: uppercase;
+        font-weight: bold;
+        letter-spacing: 0.2rem;
+
+        padding: 0.8rem 1.5rem;
+        width: fit-content;
+      }
+    }
+  }
+}

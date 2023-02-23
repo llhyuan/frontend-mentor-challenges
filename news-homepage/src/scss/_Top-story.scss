@@ -1,0 +1,13 @@
+@use "./variables" as v;
+
+.top-story {
+  display: flex;
+  justify-content: space-between;
+
+  img {
+    flex: 1;
+  }
+  .abstract {
+    flex: 2;
+  }
+}

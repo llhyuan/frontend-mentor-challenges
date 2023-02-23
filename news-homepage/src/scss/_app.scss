@@ -1,0 +1,12 @@
+@use './variables' as v;
+
+.app-container {
+  width: v.$size-Desktop;
+  margin: 0 auto;
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+  }
+}
