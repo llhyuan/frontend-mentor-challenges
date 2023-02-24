@@ -1,23 +1,23 @@
 // import "../scss/styles.scss";
 
-const nameInput = document.getElementById("cardholder-name");
-const nameOnCard = document.getElementById("name-on-card");
+const nameInput = document.getElementById('cardholder-name')
+const nameOnCard = document.getElementById('name-on-card')
 
-const cardNumberInput = document.getElementById("card-number");
-const cardNumberOnCard = document.getElementById("card-number-on-card");
+const cardNumberInput = document.getElementById('card-number')
+const cardNumberOnCard = document.getElementById('card-number-on-card')
 
-const expireMonthInput = document.getElementById("expire-month");
-const expireMonthOnCard = document.getElementById("expire-month-on-card");
+const expireMonthInput = document.getElementById('expire-month')
+const expireMonthOnCard = document.getElementById('expire-month-on-card')
 
-const expireYearInput = document.getElementById("expire-year");
-const expireYearOnCard = document.getElementById("expire-year-on-card");
+const expireYearInput = document.getElementById('expire-year')
+const expireYearOnCard = document.getElementById('expire-year-on-card')
 
-const cvcInput = document.getElementById("cvc");
-const cvcOnCard = document.getElementById("cvc-on-card");
+const cvcInput = document.getElementById('cvc')
+const cvcOnCard = document.getElementById('cvc-on-card')
 
-const messageContainers = document.querySelectorAll(".error-message");
+const messageContainers = document.querySelectorAll('.error-message')
 
-const submitButton = document.getElementById("button");
+const submitButton = document.getElementById('button')
 
 const inputsAndCheckers = [
   [nameInput, nameChecker, nameOnCard],
@@ -25,95 +25,95 @@ const inputsAndCheckers = [
   [expireMonthInput, expireMonthChecker, expireMonthOnCard],
   [expireYearInput, expireYearChecker, expireYearOnCard],
   [cvcInput, cvcChecker, cvcOnCard],
-];
+]
 
 /*-----------------------------------------------*/
 
 function nameChecker(nameInput) {
-  return /^[a-zA-Z][a-zA-Z\s]{0,20}[a-zA-Z]$/.test(nameInput.value);
+  return /^[a-zA-Z][a-zA-Z\s]{0,20}[a-zA-Z]$/.test(nameInput.value)
 }
 
 function cardNumberChecker(cardNumberInput) {
-  return /^([0-9]{4} ){3}[0-9]{4}$/.test(cardNumberInput.value);
+  return /^([0-9]{4} ){3}[0-9]{4}$/.test(cardNumberInput.value)
 }
 
 function expireMonthChecker(expireMonthInput) {
-  return /^0[1-9]$|^1[12]$/.test(expireMonthInput.value);
+  return /^0[1-9]$|^1[12]$/.test(expireMonthInput.value)
 }
 
 function expireYearChecker(expireYearInput) {
-  return /^[0-9][0-9]$/.test(expireYearInput.value);
+  return /^[0-9][0-9]$/.test(expireYearInput.value)
 }
 
 function cvcChecker(cvcInput) {
-  return /^[0-9]{2}[0-9]$/.test(cvcInput.value);
+  return /^[0-9]{2}[0-9]$/.test(cvcInput.value)
 }
 
 function statusChecker(inputElement, checker) {
-  let status = false;
-  if (inputElement.value === "") {
-    alertMessage(inputElement, "empty");
+  let status = false
+  if (inputElement.value === '') {
+    alertMessage(inputElement, 'empty')
   } else {
     if (checker(inputElement)) {
-      status = true;
+      status = true
     } else {
-      alertMessage(inputElement, "invalid");
+      alertMessage(inputElement, 'invalid')
     }
   }
   if (!status) {
-    inputElement.classList.add("invalid-input");
+    inputElement.classList.add('invalid-input')
   }
-  return status;
+  return status
 }
 
 function alertMessage(inputElement, status) {
-  console.log(inputElement, status);
-  const messageContainer = inputElement.parentElement.nextElementSibling;
+  console.log(inputElement, status)
+  const messageContainer = inputElement.parentElement.nextElementSibling
 
   switch (status) {
-    case "empty":
-      if (messageContainer.textContent !== "Cannot be blank. ") {
-        messageContainer.textContent += "Cannot be blank. ";
+    case 'empty':
+      if (messageContainer.textContent !== 'Cannot be blank. ') {
+        messageContainer.textContent += 'Cannot be blank. '
       }
-      break;
-    case "invalid":
+      break
+    case 'invalid':
       if (messageContainer.textContent !== msgTemplate) {
-        messageContainer.textContent += inputElement.validationMessage;
+        messageContainer.textContent += inputElement.validationMessage
       }
   }
 }
 
 function resetErrorMessage() {
-  console.log("running");
+  console.log('running')
   messageContainers.forEach(
-    (messageContainer) => (messageContainer.textContent = "")
-  );
+    (messageContainer) => (messageContainer.textContent = '')
+  )
 
   inputsAndCheckers.forEach(([input, checker, _]) =>
-    input.classList.remove("invalid-input")
-  );
+    input.classList.remove('invalid-input')
+  )
 }
 
 /*-----------------------------------------------*/
 
-submitButton.addEventListener("click", function (e) {
-  e.preventDefault();
+submitButton.addEventListener('click', function (e) {
+  e.preventDefault()
 
-  resetErrorMessage();
+  resetErrorMessage()
 
   let detailsValidity = inputsAndCheckers.reduce(function (
     formStatus,
     [input, checker, _]
   ) {
-    const inputStatus = statusChecker(input, checker);
-    formStatus &&= inputStatus;
-    return formStatus;
+    const inputStatus = statusChecker(input, checker)
+    formStatus &&= inputStatus
+    return formStatus
   },
-  true);
+  true)
 
   if (detailsValidity) {
     inputsAndCheckers.forEach(function ([input, _, onCardInfo]) {
-      onCardInfo.textContent = input.value;
-    });
+      onCardInfo.textContent = input.value
+    })
   }
-});
+})

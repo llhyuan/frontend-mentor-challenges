@@ -1,6 +1,6 @@
-@use "removeAgentStyling";
+@use 'removeAgentStyling';
 
-@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500&display=swap');
 
 $color-background-white: hsl(0, 0%, 100%);
 $color-cardText: hsl(270, 3%, 87%);
@@ -22,7 +22,7 @@ $height-card-container: 250px;
 body {
   font-size: 18px;
   color: $color-bodyText;
-  font-family: "Space Grotesk", sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
 }
 
 label {
@@ -40,7 +40,7 @@ input {
   padding: 0.5rem;
 
   width: 100%;
-  font-family: "Space Grotesk", sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 1.2rem;
   color: $color-inputPlaceholder;
 

@@ -28,7 +28,7 @@ body {
 }
 
 label {
-  display: block;
+  dsplay: block;
   text-transform: uppercase;
   margin-bottom: 0.5rem;
   font-size: 0.8rem;
@@ -124,9 +124,9 @@ button {
 }
 
 .info-container {
-  height: 250px;
+    height: 250px;
   width: 375px;
-  padding: 1rem;
+                        padding: 1rem;
   margin: 4rem auto;
 }
 
