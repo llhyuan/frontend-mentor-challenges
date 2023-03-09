@@ -31,6 +31,13 @@
       h3 {
         color: v.$color-Background;
         margin-bottom: 0.8rem;
+        a {
+          color: v.$color-Background;
+          text-decoration: none;
+          &:hover {
+            color: v.$color-h2;
+          }
+        }
       }
       p {
         font-size: 0.8rem;

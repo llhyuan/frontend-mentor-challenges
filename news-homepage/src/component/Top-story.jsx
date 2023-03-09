@@ -26,10 +26,12 @@ const ARTICLES = [
 function Topstory({ article }) {
   return (
     <div className='top-story'>
-        <img src={article.img} alt={article.title} />
+      <img src={article.img} alt={article.title} />
       <div className='abstract'>
         <h3>{article.number}</h3>
-        <h4>{article.title}</h4>
+        <a href='#'>
+          <h4>{article.title}</h4>
+        </a>
         <p>{article.content}</p>
       </div>
     </div>
@@ -42,4 +44,5 @@ function Topstories() {
   ))
   return <div className='top-stories'>{articles}</div>
 }
+
 export default Topstories

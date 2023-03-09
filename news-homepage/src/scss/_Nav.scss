@@ -25,6 +25,9 @@
     a {
       color: v.$color-Maintext;
       text-decoration: none;
+      &:hover {
+        color: red;
+      }
     }
   }
 }
