@@ -39,4 +39,15 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+@media only screen and (max-width: 500px) {
+  .top-stories {
+    flex-direction: column;
+  }  
+  .top-story {
+    width: 100%;
+    margin-bottom: 2rem;
+  }
 }

@@ -8,6 +8,11 @@
   align-items: center;
   margin: v.$margin-bottom 0;
 
+  .menu-toggle {
+    font-size: 2rem;
+    align-self: flex-end;
+    display: none;
+  }
   img {
     width: 3rem;
   }
@@ -28,6 +33,48 @@
       &:hover {
         color: red;
       }
+    }
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .nav {
+    flex-direction: column;
+    position: relative;
+    .nav__mobile {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+    }
+    .menu-toggle {
+      display: block;
+    }
+    ul {
+      width: 70%;
+      height: 100vh;
+      padding-top: 2rem;
+      flex-direction: column;
+      justify-content: flex-start;
+      list-style: none;
+      position: fixed;
+      top: 0;
+      right: calc((100vw - 376px) / 2);
+      z-index: 100;
+      background-color: v.$color-Background;
+      transition-property: all;
+      transition-duration: 0.3s;
+      transition-timing-function: ease-in-out;
+
+      li {
+        margin-left: 0;
+        margin-top: 1rem;
+        font-size: 1.5rem;
+        text-align: right;
+      }
+    }
+    .menu-hide {
+      transform: translateX(400px);
     }
   }
 }
